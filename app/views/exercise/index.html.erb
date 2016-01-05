@@ -1,0 +1,9 @@
+<table border="1">
+	<% @test[2..-2].split(", ").each do |row| %>
+		<tr>
+			<% row[1..-2].split(",").each do |col| %>
+				<td><%= col %></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

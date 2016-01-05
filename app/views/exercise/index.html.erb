@@ -1,8 +1,12 @@
 <table border="1">
 	<% @test[2..-2].split(", ").each do |row| %>
 		<tr>
-			<% row[1..-2].split(",").each do |col| %>
-				<td><%= col %></td>
+			<% row[1..-2].split(",").each_with_index do |col, idx| %>
+				<% if idx == row[1..-2].split(",").size - 1 %>
+					<td><%= link_to "View Video", col %></td>
+				<% else %>
+					<td><%= col %></td>
+				<% end %>
 			<% end %>
 		</tr>
 	<% end %>

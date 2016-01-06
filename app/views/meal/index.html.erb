@@ -1,0 +1,78 @@
+<% def get_num num %>
+	<% hash = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth",
+		"Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteenth",
+		"Sixteenth", "Seventeenth", "Eighteenth", "Nineteenth", "Twentieth", "Twenty-first",
+		"Twenty-second", "Twenty-third", "Twenty-fourth", "Twenty-fifth", "Twenty-sixth",
+		"Twenty-seventh", "Twenty-eighth"] %>
+	<% hash[num]%>
+<% end %>
+<!-- <table class="solid_border"> -->
+	<% @command.each_with_index do |week, w| %>
+		<!-- <tr> -->
+			<% week.each_with_index do |day, d| %>
+				<!-- <td> -->
+				<table class="non">
+					<th>
+						<%= get_num(w*7 + d) %> Day
+					</th>
+					<td>
+						<table class="solid_border">						
+							<% day.each do |meal| %>
+								<tr>
+									<% meal.each do |food| %>
+										<td>
+											<%= food %>
+										</td>
+									<% end %>
+								</tr>
+							<% end %>
+						</table>
+					</td>
+				</table>
+					<br><br>
+				<!-- </td> -->
+			<% end %>
+		<!-- </tr> -->
+	<% end %>
+<!-- </table> -->
+<%= form_tag("/meal", method: "get") do %>
+	<%= label_tag("", "#Meals a day") %>
+	<%= number_field("", :meals, in: 3..5, step: 1, value: @meals) %>
+	<br><br>
+	<%= radio_button_tag(:build, "true", @build === "true") %>
+	<%= label_tag(:build_true, "Build") %>
+	<%= radio_button_tag(:build, "false", @build === "false") %>
+	<%= label_tag(:build_false, "Cut") %>
+	<br><br>
+	<%= label_tag("", "Weight") %>
+	<%= number_field("", :Weight, in: 1..500, step: 1, value: @Weight) %>
+	<%= label_tag("", "Kg") %>
+	<br><br>
+	<%= label_tag("", "Fat body Percentage") %>
+	<%= number_field("", :Percentage, in: 1..100, step: 1, value: @Percentage) %>
+	<%= label_tag("", "%") %>
+	<br><br>
+	<%= label_tag "", "Activity: " %>
+	<br>
+	<%= radio_button_tag(:activity, "1", @activity === "1") %>
+	<%= label_tag(:activity_1,
+		"Sedentary (Little Formal Exercise)") %>
+	<br>
+	<%= radio_button_tag(:activity, "2", @activity === "2") %>
+	<%= label_tag(:activity_2,
+		"Lightly Active (light exercise 1-3 days a week)") %>
+	<br>
+	<%= radio_button_tag(:activity, "3", @activity === "3") %>
+	<%= label_tag(:activity_3,
+		"Moderately Active (Moderate exercise 3-5 days a week)") %>
+	<br>
+	<%= radio_button_tag(:activity, "4") %>
+	<%= label_tag(:activity_4,
+		"Very Active (Hard exercise 6-7 days a week)", @activity === "4") %>
+	<br>
+	<%= radio_button_tag(:activity, "5") %>
+	<%= label_tag(:activity_5,
+		"Extremely Active (VERY HARD physical job)", @activity === "5") %>
+	<br><br>
+	<%= submit_tag("Generate Schedule") %>
+<% end %>

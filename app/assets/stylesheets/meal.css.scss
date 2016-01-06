@@ -1,0 +1,29 @@
+// Place all the styles related to the meal controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+table {
+    border-collapse: collapse;
+    white-space: nowrap;
+    vertical-align: center;
+    text-align: center;
+    align: center;
+	// border: 1px solid #ccc;
+    // margin: 0 auto;
+}
+table.solid_border td, table.solid_border th{
+    border: 1px solid #ccc;
+}
+
+table td, table th{
+	padding: 5px;
+}
+
+table.dotted_border td, table.dotted_border th{
+    border: 1px dotted #ccc;
+}
+
+// tr:nth-child(1) {background: #f2f2f2}
+// table.non th:nth-child(1) {background: #f2f2f2;}
+table.non th:nth-child(1) {background: red; color: white;}
+table.solid_border tr:nth-child(odd) {background-color: #4CAF50; color: white;}
+table.solid_border tr:nth-child(even) {background: blue; color: white}
